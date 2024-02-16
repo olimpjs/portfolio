@@ -1,7 +1,14 @@
 // TODO: 1. Определить стартовое положение змейки
+let foodX, foodY;
 let velocityX = 0, velocityY = 0;
 let snakeBody = [];
 let score = 0;
+
+const storageKeys = {
+    highScore: 'snake:high_score',
+};
+
+let highScore = localStorage.getItem(storageKeys.highScore) || 0;
 
 function drawHighScore(amount) {
     document.querySelector("#hi-score")
@@ -59,7 +66,6 @@ function handleNewIteration() {
     if (snakeX !== foodX || snakeY !== foodY) {
         return;
     }
-
     // TODO: 3. Включить обновление позиции еды
 
     // TODO: 4. Включить наполнение змеи
@@ -119,27 +125,20 @@ const initGame = () => {
     document.querySelector('.play-board').innerHTML = html;
 }
 
-const storageKeys = {
-    highScore: 'snake:high_score',
-};
+document.addEventListener("DOMContentLoaded", ()=> {
 
-let highScore = localStorage.getItem(storageKeys.highScore) || 0;
+    drawHighScore(highScore);
 
-let foodX, foodY;
+    document.querySelectorAll(".controls i")
+        .forEach(button => button.addEventListener("click", () => changeDirection({ key: button.dataset.key })));
+        
+    updateFoodPosition();
 
-drawHighScore(highScore);
+    const intervalId = setInterval(initGame, 100);
 
-document.querySelectorAll(".controls i")
-    .forEach(button => button.addEventListener("click", () => changeDirection({ key: button.dataset.key })));
+    // TODO: 2. Включить отслеживание нажатия клавиатуры для старта игры
 
-updateFoodPosition();
-
-const intervalId = setInterval(initGame, 100);
-
-// TODO: 2. Включить отслеживание нажатия клавиатуры для старта игры
-
-document.addEventListener('snake:game_over', function (event) {
-
-    // TODO: 5. Включить обработку события завершения игры
-
-});
+    document.addEventListener('snake:game_over', function (event) {
+        // TODO: 5. Включить обработку события завершения игры
+    });
+})
