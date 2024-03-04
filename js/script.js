@@ -15,6 +15,12 @@ function drawHighScore(amount) {
         .innerText = amount;
 }
 
+function openLostModal() {
+    let modal = document.getElementById('game-over-modal');
+    modal.style.display = 'flex';
+    document.querySelector('#yourScore').innerText = score;
+}
+
 const updateFoodPosition = () => {
     foodX = Math.floor(Math.random() * 30) + 1;
     foodY = Math.floor(Math.random() * 30) + 1;
@@ -66,6 +72,7 @@ function handleNewIteration() {
     if (snakeX !== foodX || snakeY !== foodY) {
         return;
     }
+
     // TODO: 3. Включить обновление позиции еды
 
     // TODO: 4. Включить наполнение змеи
@@ -89,6 +96,22 @@ function isGameOver(snakeX, snakeY) {
     return snakeX <= 0 || snakeX > 30 || snakeY <= 0 || snakeY > 30
 }
 
+function restartGame() {
+    clearInterval(document.intervalId);
+    snakeX = 5;
+    snakeY = 5;
+    velocityX = 0;
+    velocityY = 0;
+    snakeBody = [];
+    score = 0;
+    updateFoodPosition();
+
+    const modal = document.getElementById('game-over-modal');
+    modal.style.display = 'none';
+    document.intervalId = setInterval(initGame, 100);
+    document.querySelector('#score').innerText = score;
+}
+
 function renderSnake(body, positionX, positionY) {
     for (let i = body.length - 1; i > 0; i--) {
         body[i] = body[i - 1];
@@ -108,6 +131,7 @@ const initGame = () => {
 
     if (isGameOver(snakeX, snakeY)) {
         document.dispatchEvent(new CustomEvent('snake:game_over'));
+        return;
     }
 
     let html = `<div class="food" style="grid-area: ${foodY} / ${foodX}"></div>`;
@@ -131,7 +155,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
 
     document.querySelectorAll(".controls i")
         .forEach(button => button.addEventListener("click", () => changeDirection({ key: button.dataset.key })));
-        
+
     updateFoodPosition();
 
     const intervalId = setInterval(initGame, 100);
