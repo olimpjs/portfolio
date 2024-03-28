@@ -1,9 +1,10 @@
+
 let foodX, foodY;
 let velocityX = 0, velocityY = 0;
 let snakeBody = [];
-let score = 0;
-let snakeX = 5;
-let snakeY = 5;
+let score = 0; 
+let snakeX=5
+let snakeY=5
 
 const storageKeys = {
     highScore: 'snake:high_score',
@@ -74,11 +75,10 @@ function handleNewIteration() {
         return;
     }
 
-    // Add new segment to the snake body
-    snakeBody.push([]);
-    // Update the food position
-    updateFoodPosition();
-    // Increase the score
+    // TODO: 3. Включить обновление позиции еды
+updateFoodPosition()
+    // TODO: 4. Включить наполнение змеи
+
     score++;
     document.querySelector('#score').innerText = score;
 
@@ -96,7 +96,6 @@ function isSnakeHeadHitBody(snakeBody, i) {
 function isGameOver(snakeX, snakeY) {
     return snakeX <= 0 || snakeX > 30 || snakeY <= 0 || snakeY > 30;
 }
-
 function restartGame() {
     clearInterval(document.intervalId);
     snakeX = 5;
@@ -150,7 +149,7 @@ const initGame = () => {
     document.querySelector('.play-board').innerHTML = html;
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", ()=> {
 
     drawHighScore(highScore);
 
@@ -160,12 +159,19 @@ document.addEventListener("DOMContentLoaded", () => {
     updateFoodPosition();
 
     const intervalId = setInterval(initGame, 100);
-    document.intervalId = intervalId;
 
-    document.addEventListener('keyup', changeDirection);
+    // TODO: 2. Включить отслеживание нажатия клавиатуры для старта игры
     document.addEventListener('snake:game_over', function (event) {
         clearInterval(intervalId);
-        const modalwindow = document.getElementById('game-over-modal')
-        modalwindow.style.display = 'block'
+    
+        // Обновление счета
+        document.querySelector('#yourScore').innerText = score;
+    
+        const modalwindow = document.getElementById('game-over-modal');
+        modalwindow.style.display = 'block';
+    
+        // Обновление максимального счета
+        highScore = score >= highScore ? score : highScore;
+        localStorage.setItem(storageKeys.highScore, highScore);
+        drawHighScore(highScore);
     });
-})
