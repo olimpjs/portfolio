@@ -81,7 +81,7 @@ updateFoodPosition()
 
     score++;
 
-    document.querySelector('score').innerText = score;
+    document.querySelector('#score').innerText = score;
 
     highScore = score >= highScore ? score : highScore;
 
