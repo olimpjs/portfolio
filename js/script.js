@@ -80,7 +80,7 @@ updateFoodPosition()
     // TODO: 4. Включить наполнение змеи
 
     score++;
-
+    cells: [],
     document.querySelector('score').innerText = score;
 
     highScore = score >= highScore ? score : highScore;
