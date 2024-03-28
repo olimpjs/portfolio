@@ -75,14 +75,13 @@ function handleNewIteration() {
         return;
     }
 
-    // TODO: 3. Включить обновление позиции еды
-updateFoodPosition()
-    // TODO: 4. Включить наполнение змеи
-
+    // Add new segment to the snake body
+    snakeBody.push([]);
+    // Update the food position
+    updateFoodPosition();
+    // Increase the score
     score++;
-    cells: [],
-    maxCells: 4
-    document.querySelector('score').innerText = score;
+    document.querySelector('#score').innerText = score;
 
     highScore = score >= highScore ? score : highScore;
 
