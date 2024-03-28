@@ -73,12 +73,11 @@ function handleNewIteration() {
     if (snakeX !== foodX || snakeY !== foodY) {
         return;
     }
-
-    // Add new segment to the snake body
     snakeBody.push([]);
-    // Update the food position
-    updateFoodPosition();
-    // Increase the score
+    // TODO: 3. Включить обновление позиции еды
+updateFoodPosition()
+    // TODO: 4. Включить наполнение змеи
+
     score++;
     document.querySelector('#score').innerText = score;
 
@@ -160,13 +159,13 @@ document.addEventListener("DOMContentLoaded", () => {
     updateFoodPosition();
 
     const intervalId = setInterval(initGame, 100);
-    document.intervalId = intervalId;
 
-    document.addEventListener('keyup', changeDirection);
+    // TODO: 2. Включить отслеживание нажатия клавиатуры для старта игры
+document.addEventListener('keyup',changeDirection)
     document.addEventListener('snake:game_over', function (event) {
-        clearInterval(intervalId);
-        const modalwindow = document.getElementById('game-over-modal');
-        modalwindow.style.display = 'block';
-        document.querySelector('#yourScore').innerText = score;
+        // TODO: 5. Включить обработку события завершения игры
+clearInterval(intervalId)
+const modalwindow=document.getElementById('game-over-modal')
+modalwindow.style.display='block'
     });
 })
