@@ -161,17 +161,11 @@ document.addEventListener("DOMContentLoaded", ()=> {
     const intervalId = setInterval(initGame, 100);
 
     // TODO: 2. Включить отслеживание нажатия клавиатуры для старта игры
+document.addEventListener('keyup',changeDirection)
     document.addEventListener('snake:game_over', function (event) {
-        clearInterval(intervalId);
-        
-        // Обновление максимального счета
-        highScore = score >= highScore ? score : highScore;
-        localStorage.setItem(storageKeys.highScore, highScore);
-        drawHighScore(highScore);
-    
-        const modalwindow = document.getElementById('game-over-modal');
-        modalwindow.style.display = 'block';
-    
-        // Вывод текущего счета
-        document.querySelector('#yourScore').innerText = score;
+        // TODO: 5. Включить обработку события завершения игры
+clearInterval(intervalId)
+const modalwindow=document.getElementById('game-over-modal')
+modalwindow.style.display='block'
     });
+})
