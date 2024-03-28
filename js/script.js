@@ -94,9 +94,8 @@ function isSnakeHeadHitBody(snakeBody, i) {
 }
 
 function isGameOver(snakeX, snakeY) {
-    return snakeX <= 0 || snakeX > 30 || snakeY <= 0 || snakeY > 30
+    return snakeX <= 0 || snakeX > 30 || snakeY <= 0 || snakeY > 30;
 }
-
 function restartGame() {
     clearInterval(document.intervalId);
     snakeX = 5;
