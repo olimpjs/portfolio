@@ -75,11 +75,10 @@ function handleNewIteration() {
         return;
     }
 
-    // Add new segment to the snake body
-    snakeBody.push([]);
-    // Update the food position
-    updateFoodPosition();
-    // Increase the score
+    // TODO: 3. Включить обновление позиции еды
+updateFoodPosition()
+    // TODO: 4. Включить наполнение змеи
+
     score++;
     document.querySelector('#score').innerText = score;
 
