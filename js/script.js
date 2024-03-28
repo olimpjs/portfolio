@@ -81,6 +81,7 @@ updateFoodPosition()
 
     score++;
     cells: [],
+    maxCells: 4
     document.querySelector('score').innerText = score;
 
     highScore = score >= highScore ? score : highScore;
