@@ -77,7 +77,7 @@ function handleNewIteration() {
     // TODO: 3. Включить обновление позиции еды
 updateFoodPosition()
     // TODO: 4. Включить наполнение змеи
-
+snakeBody.push([foodX,foodY]);
     score++;
     document.querySelector('#score').innerText = score;
 
