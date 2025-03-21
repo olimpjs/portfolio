@@ -71,5 +71,8 @@
     "dev": "webpack-dev-server --config=./webpack.config.js --mode production",
     "tsc": "tsc --declaration true --emitDeclarationOnly true --outDir ./dist",
     "lint": "eslint . --fix"
+  },
+  "dependencies": {
+    "@vercel/speed-insights": "^1.2.0"
   }
 }
